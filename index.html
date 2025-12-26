@@ -1,487 +1,0 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>الطرح مع وجود الأصفار (الصف الثالث)</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap');
-    * { font-family: "Tajawal", system-ui, sans-serif; }
-    .card { box-shadow: 0 18px 60px rgba(15,23,42,.12); }
-    .box3 {
-      border-width: 4px; border-radius: 18px;
-      min-width: 78px; min-height: 78px;
-      display:flex; align-items:center; justify-content:center;
-      font-weight:800; font-size:40px; background:#fff;
-    }
-    .ansBox{
-      width: 5rem; height: 4.25rem; text-align:center;
-      font-size:2rem; font-weight:800; border-width:4px;
-      border-radius:1.25rem; outline:none; background:#fff;
-    }
-    .ansBox:focus{ box-shadow:0 0 0 6px rgba(236,72,153,.25); }
-    .borrowBox{
-      width:3.25rem; height:2.75rem; text-align:center;
-      font-size:1.35rem; font-weight:800; border-width:3px;
-      border-radius:.9rem; outline:none; background:#fff; opacity:.95;
-    }
-    .borrowBox:focus{ box-shadow:0 0 0 5px rgba(139,92,246,.22); }
-    .btn{ border-radius:18px; font-weight:800; padding:14px 18px; }
-    .shake{ animation:shake .35s ease-in-out; }
-    @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(6px)}50%{transform:translateX(-6px)}75%{transform:translateX(4px)}}
-    .pop{ animation:pop .35s ease-in-out; }
-    @keyframes pop{0%{transform:scale(.98)}60%{transform:scale(1.04)}100%{transform:scale(1)}}
-    @media (max-width:640px){
-      .box3{min-width:68px; min-height:68px; font-size:34px}
-      .ansBox{width:4.25rem; height:3.75rem; font-size:1.75rem}
-      .borrowBox{width:2.8rem; height:2.4rem; font-size:1.2rem}
-    }
-  </style>
-</head>
-
-<body class="min-h-screen bg-gradient-to-br from-amber-50 via-white to-emerald-50">
-  <div class="max-w-5xl mx-auto px-4 py-6">
-    <div class="bg-white/90 backdrop-blur rounded-3xl card p-6 border border-emerald-100">
-      <div class="flex flex-col gap-2 items-center text-center">
-        <div class="text-2xl md:text-3xl font-extrabold text-slate-800">الطَّرْحُ مَعَ وُجُودِ الأَصْفَار</div>
-        <div class="mt-1 inline-block rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3">
-          <div class="font-extrabold text-emerald-800">فِكْرَةُ الدَّرْسِ</div>
-          <div class="text-slate-700 font-bold mt-1">أطرحُ أعدادًا مع وجود الأصفار.</div>
-        </div>
-        <div class="text-sm md:text-base text-slate-600 mt-1">
-          أحيانًا يكون في العشرات أو الآحاد (٠)، وعندها قد نحتاج إلى إعادة التجميع (الاستلاف) عبر الصفر.
-        </div>
-      </div>
-
-      <div class="mt-6 flex flex-wrap gap-2 justify-center">
-        <button id="tab-learn" class="btn bg-pink-600 text-white">تعلم</button>
-        <button id="tab-example" class="btn bg-white text-slate-700 border-2 border-pink-200">مثال محلول</button>
-        <button id="tab-practice" class="btn bg-white text-slate-700 border-2 border-pink-200">تدرب</button>
-      </div>
-    </div>
-
-    <div class="mt-6">
-      <section id="section-learn" class="bg-white rounded-3xl card p-6 border border-emerald-100">
-        <div class="grid md:grid-cols-3 gap-4">
-          <div class="rounded-2xl p-4 bg-pink-50 border border-pink-100">
-            <div class="font-extrabold text-lg text-slate-800 mb-2">١) أبدأ من الآحاد</div>
-            <div class="text-slate-700 leading-7">
-              إذا كان آحاد العدد العلوي <b>أصغر</b> من آحاد العدد السفلي، أستلف ١ من العشرات.
-            </div>
-          </div>
-          <div class="rounded-2xl p-4 bg-purple-50 border border-purple-100">
-            <div class="font-extrabold text-lg text-slate-800 mb-2">٢) ماذا لو كانت العشرات = ٠؟</div>
-            <div class="text-slate-700 leading-7">
-              إذا احتجتُ استلافًا من العشرات وكانت <b>٠</b>:
-              أستلف ١ من المئات أولًا، فتُصبح العشرات <b>١٠</b>، ثم أستلف ١ للعشرات إلى الآحاد.
-              غالبًا تصبح العشرات <b>٩</b>.
-            </div>
-          </div>
-          <div class="rounded-2xl p-4 bg-amber-50 border border-amber-100">
-            <div class="font-extrabold text-lg text-slate-800 mb-2">٣) ثم العشرات والمئات</div>
-            <div class="text-slate-700 leading-7">
-              بعد الاستلاف نُكمل: نطرح العشرات ثم المئات، ونكتب الناتج في خانات (مئات/عشرات/آحاد).
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-5 rounded-2xl p-4 border border-slate-200 bg-slate-50">
-          <div class="font-extrabold text-slate-800 mb-2">مثال سريع على الاستلاف عبر الصفر ✅</div>
-          <div class="text-slate-700 leading-7">
-            <b>٤٠٢ − ١٧٨</b>:
-            الآحاد ٢ أصغر من ٨ → نريد الاستلاف من العشرات لكن العشرات = ٠ → نستلف من المئات (٤ تصبح ٣، العشرات تصبح ١٠)، ثم نستلف ١ من العشرات للآحاد فتُصبح العشرات ٩ والآحاد ١٢.
-          </div>
-        </div>
-      </section>
-
-      <section id="section-example" class="hidden bg-white rounded-3xl card p-6 border border-emerald-100">
-        <div class="flex items-center justify-between flex-wrap gap-2">
-          <div class="font-extrabold text-xl text-slate-800">مثال محلول خطوة بخطوة (مع أصفار)</div>
-          <button id="btnNewExample" class="btn bg-purple-600 text-white">مثال جديد</button>
-        </div>
-
-        <div class="mt-5 rounded-3xl border border-slate-200 bg-slate-50 p-5">
-          <div id="exampleProblem" class="flex flex-col items-center gap-4"></div>
-          <div class="mt-4 rounded-2xl bg-white border border-slate-200 p-4" id="exampleSteps"></div>
-        </div>
-      </section>
-
-      <section id="section-practice" class="hidden bg-white rounded-3xl card p-6 border border-emerald-100">
-        <div class="flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <div class="font-extrabold text-xl text-slate-800">تدرب: اكتب الناتج في المربعات</div>
-            <div class="text-slate-600">ركّز/ي على الصفر: قد نحتاج الاستلاف عبر الصفر.</div>
-          </div>
-          <div class="rounded-2xl bg-slate-50 border border-slate-200 px-4 py-3">
-            <div class="font-bold text-slate-700">النتيجة</div>
-            <div class="text-slate-700">⭐ <span id="score">٠</span> / <span id="total">٠</span></div>
-          </div>
-        </div>
-
-        <div class="mt-6 grid lg:grid-cols-2 gap-6 items-start">
-          <div class="rounded-3xl border border-pink-100 bg-gradient-to-b from-white to-pink-50 p-5">
-            <div class="flex items-center justify-between mb-3">
-              <div class="font-extrabold text-slate-800">المسألة</div>
-              <div class="text-sm text-slate-500">ابدأ من الآحاد</div>
-            </div>
-
-            <div id="practiceProblem" class="flex flex-col items-center gap-4"></div>
-
-            <div class="mt-5 flex flex-col items-center gap-3">
-              <div class="text-2xl font-extrabold text-slate-800">= ؟</div>
-              <div class="flex items-center justify-center gap-4" dir="ltr">
-                <div class="text-center">
-                  <div class="text-sm font-bold text-gray-500 mb-1">مئات</div>
-                  <input id="ans-h" class="ansBox border-pink-500 text-slate-800" inputmode="numeric" maxlength="1" />
-                </div>
-                <div class="text-center">
-                  <div class="text-sm font-bold text-gray-500 mb-1">عشرات</div>
-                  <input id="ans-t" class="ansBox border-pink-500 text-slate-800" inputmode="numeric" maxlength="1" />
-                </div>
-                <div class="text-center">
-                  <div class="text-sm font-bold text-gray-500 mb-1">آحاد</div>
-                  <input id="ans-o" class="ansBox border-pink-500 text-slate-800" inputmode="numeric" maxlength="1" />
-                </div>
-              </div>
-              <div class="text-sm text-slate-500">اكتبي كل رقم في مربعه</div>
-            </div>
-
-            <div class="mt-5 flex gap-3 justify-center">
-              <button id="btnCheck" class="btn bg-emerald-600 text-white w-44">تحقق ✅</button>
-              <button id="btnSolve" class="btn bg-white border-2 border-purple-200 text-slate-700 w-44">اعرض الحل</button>
-            </div>
-
-            <div class="mt-4 flex gap-3 justify-center">
-              <button id="btnNewQ" class="btn bg-purple-600 text-white w-44">سؤال جديد</button>
-              <select id="mode" class="btn bg-white border-2 border-slate-200 text-slate-700 w-44">
-                <option value="mix">عشوائي</option>
-                <option value="zeros">مع وجود أصفار</option>
-                <option value="zerosBorrow">أصفار + استلاف</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="rounded-3xl border border-slate-200 bg-white p-5">
-            <div class="font-extrabold text-slate-800 mb-2">التغذية الراجعة والشرح</div>
-            <div id="feedback" class="text-slate-700 leading-7">
-              اكتبي الناتج ثم اضغطي <b>تحقق</b>. اضغطي <b>اعرض الحل</b> لرؤية خطوات الاستلاف (خصوصًا عبر الصفر).
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <div class="mt-8 text-center text-slate-600">
-      <div class="bg-white/80 inline-block px-4 py-3 rounded-2xl border border-slate-200">
-        <span class="font-bold">أ/ فاطمة هزازي</span> • ملتقى معلمي ومعلمات الرياضيات • الملتقى التفاعلي
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const arabic = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
-    const toArabic = (n) => String(Math.trunc(n)).split('').map(ch=>{
-      const d = ch.charCodeAt(0)-48;
-      return (d>=0 && d<=9) ? arabic[d] : ch;
-    }).join('');
-
-    const normDigits = (str) => {
-      if (str == null) return "";
-      const s = String(str).trim();
-      const map = {'٠':'0','١':'1','٢':'2','٣':'3','٤':'4','٥':'5','٦':'6','٧':'7','٨':'8','٩':'9','۰':'0','۱':'1','۲':'2','۳':'3','۴':'4','۵':'5','۶':'6','۷':'7','۸':'8','۹':'9'};
-      return s.split('').map(ch => map[ch] ?? ch).join('');
-    };
-
-    function randInt(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
-
-    // Tabs
-    const tabs = [
-      {btn:'tab-learn', sec:'section-learn'},
-      {btn:'tab-example', sec:'section-example'},
-      {btn:'tab-practice', sec:'section-practice'},
-    ];
-    function setTab(active){
-      tabs.forEach(t=>{
-        const b=document.getElementById(t.btn);
-        const s=document.getElementById(t.sec);
-        const on=t.btn===active;
-        s.classList.toggle('hidden', !on);
-        b.className = on ? 'btn bg-pink-600 text-white' : 'btn bg-white text-slate-700 border-2 border-pink-200';
-      });
-    }
-    document.getElementById('tab-learn').onclick=()=>setTab('tab-learn');
-    document.getElementById('tab-example').onclick=()=>setTab('tab-example');
-    document.getElementById('tab-practice').onclick=()=>setTab('tab-practice');
-
-    // Simulate subtraction and detect borrow through zero (tens==0 while borrowing for ones)
-    function simulate(top, bot){
-      let h1=Math.floor(top/100), t1=Math.floor((top%100)/10), o1=top%10;
-      const h2=Math.floor(bot/100), t2=Math.floor((bot%100)/10), o2=bot%10;
-
-      const log = [];
-      let throughZero = false;
-
-      if (o1 < o2){
-        log.push(`آحاد: ${toArabic(o1)} أصغر من ${toArabic(o2)} → نحتاج استلافًا من العشرات.`);
-        if (t1 === 0){
-          throughZero = true;
-          log.push(`لكن العشرات = ${toArabic(0)} → نستلف من المئات أولًا.`);
-          h1 -= 1;
-          t1 += 10;
-          log.push(`أصبحت المئات ${toArabic(h1)} والعشرات ${toArabic(t1)}.`);
-        }
-        t1 -= 1;
-        o1 += 10;
-        log.push(`نستلف ١ من العشرات للآحاد → العشرات ${toArabic(t1)} والآحاد ${toArabic(o1)}.`);
-      }
-      const rOnes = o1 - o2;
-      log.push(`ناتج الآحاد: ${toArabic(o1)} − ${toArabic(o2)} = ${toArabic(rOnes)}.`);
-
-      if (t1 < t2){
-        log.push(`عشرات: ${toArabic(t1)} أصغر من ${toArabic(t2)} → نحتاج استلافًا من المئات.`);
-        h1 -= 1;
-        t1 += 10;
-        log.push(`نستلف ١ من المئات → المئات ${toArabic(h1)} والعشرات ${toArabic(t1)}.`);
-      }
-      const rTens = t1 - t2;
-      log.push(`ناتج العشرات: ${toArabic(t1)} − ${toArabic(t2)} = ${toArabic(rTens)}.`);
-
-      const rHundreds = h1 - h2;
-      log.push(`ناتج المئات: ${toArabic(h1)} − ${toArabic(h2)} = ${toArabic(rHundreds)}.`);
-
-      const answer = rHundreds*100 + rTens*10 + rOnes;
-      return {answer, throughZero, log, rHundreds, rTens, rOnes};
-    }
-
-    function gen(mode='mix'){
-      for (let attempt=0; attempt<700; attempt++){
-        let top = randInt(100, 999);
-        let bot = randInt(10, 999);
-        if (bot > top) [top, bot] = [bot, top];
-
-        const h1=Math.floor(top/100), t1=Math.floor((top%100)/10), o1=top%10;
-        const hasZero = (t1===0 || o1===0);
-
-        if (mode==='zeros' || mode==='zerosBorrow'){
-          if (!hasZero) continue;
-        }
-
-        const sim = simulate(top, bot);
-        if (sim.answer < 0) continue;
-
-        if (mode==='zerosBorrow'){
-          if (!hasZero) continue;
-          if (!sim.throughZero) continue;
-        }
-
-        return {
-          top, bot, ...sim,
-          h1,t1,o1,
-          h2:Math.floor(bot/100), t2:Math.floor((bot%100)/10), o2:bot%10
-        };
-      }
-
-      const top = 402, bot = 178;
-      const sim = simulate(top, bot);
-      return {top, bot, ...sim, h1:4,t1:0,o1:2, h2:1,t2:7,o2:8};
-    }
-
-    function renderProblem(targetId, q){
-      const el = document.getElementById(targetId);
-      el.innerHTML = `
-        <div class="flex flex-col items-center gap-4">
-          <div class="grid grid-cols-3 gap-4 items-end justify-items-center" dir="ltr">
-            <div class="text-center">
-              <div class="text-sm font-bold text-gray-500 mb-1">—</div>
-              <div class="text-gray-400 text-sm"> </div>
-            </div>
-            <div class="text-center">
-              <div class="text-sm font-bold text-gray-500 mb-1">استلاف من المئات</div>
-              <input id="borrow-h" class="borrowBox border-purple-500 text-slate-800" inputmode="numeric" maxlength="1" />
-            </div>
-            <div class="text-center">
-              <div class="text-sm font-bold text-gray-500 mb-1">استلاف من العشرات</div>
-              <input id="borrow-t" class="borrowBox border-purple-500 text-slate-800" inputmode="numeric" maxlength="1" />
-            </div>
-          </div>
-
-          <div class="grid grid-cols-3 gap-4 items-center justify-items-center" dir="ltr">
-            <div class="text-center">
-              <div class="text-sm font-bold text-gray-500">مئات</div>
-              <div class="box3 border-pink-500 text-slate-800">${toArabic(q.h1)}</div>
-            </div>
-            <div class="text-center">
-              <div class="text-sm font-bold text-gray-500">عشرات</div>
-              <div class="box3 border-pink-500 text-slate-800">${toArabic(q.t1)}</div>
-            </div>
-            <div class="text-center">
-              <div class="text-sm font-bold text-gray-500">آحاد</div>
-              <div class="box3 border-pink-500 text-slate-800">${toArabic(q.o1)}</div>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-3 gap-4 items-center justify-items-center" dir="ltr">
-            <div class="text-center">
-              <div class="text-sm font-bold text-gray-500">مئات</div>
-              <div class="box3 border-pink-500 text-slate-800">${toArabic(q.h2)}</div>
-            </div>
-            <div class="text-center">
-              <div class="text-sm font-bold text-gray-500">عشرات</div>
-              <div class="box3 border-pink-500 text-slate-800">${toArabic(q.t2)}</div>
-            </div>
-            <div class="text-center">
-              <div class="text-sm font-bold text-gray-500">آحاد</div>
-              <div class="box3 border-pink-500 text-slate-800">${toArabic(q.o2)}</div>
-            </div>
-          </div>
-
-          <div class="text-6xl font-extrabold text-pink-600">−</div>
-          <div class="w-full h-1 rounded-full bg-pink-500"></div>
-        </div>
-      `;
-
-      ['borrow-h','borrow-t'].forEach(id=>{
-        const bx = document.getElementById(id);
-        if (!bx) return;
-        bx.addEventListener('input', ()=>{
-          bx.value = normDigits(bx.value).replace(/\D/g,'').slice(-1);
-        });
-      });
-    }
-
-    function stepsHtml(q){
-      const lines = q.log.map((s)=>`<li class="mb-2">${s}</li>`).join('');
-      return `
-        <div class="text-right leading-8 text-slate-700">
-          <div class="mb-2 font-extrabold text-slate-800">خطوات الحل:</div>
-          <ol class="list-decimal pr-6">${lines}</ol>
-          <div class="mt-3 p-3 rounded-2xl bg-emerald-50 border border-emerald-200 font-extrabold text-emerald-800">
-            الناتج النهائي: <span dir="ltr">${toArabic(q.rHundreds)}${toArabic(q.rTens)}${toArabic(q.rOnes)}</span>
-          </div>
-        </div>
-      `;
-    }
-
-    // Example
-    let exQ = gen('zerosBorrow');
-    function renderExample(){
-      document.getElementById('exampleProblem').innerHTML = `
-        <div class="text-slate-700 font-bold">المسألة:</div>
-        <div class="flex items-center gap-4" dir="rtl">
-          <span class="text-2xl font-extrabold text-slate-800">${toArabic(exQ.top)}</span>
-          <span class="text-3xl font-extrabold text-pink-600">−</span>
-          <span class="text-2xl font-extrabold text-slate-800">${toArabic(exQ.bot)}</span>
-        </div>
-      `;
-      document.getElementById('exampleSteps').innerHTML = stepsHtml(exQ);
-    }
-    document.getElementById('btnNewExample').onclick = ()=>{ exQ = gen('zerosBorrow'); renderExample(); };
-    renderExample();
-
-    // Practice state
-    let state = { q: gen('zerosBorrow'), score:0, total:0 };
-
-    function updateScore(){
-      document.getElementById('score').textContent = toArabic(state.score);
-      document.getElementById('total').textContent = toArabic(state.total);
-    }
-    updateScore();
-
-    function setFeedback(html, kind){
-      const box = document.getElementById('feedback');
-      box.classList.remove('shake','pop');
-      void box.offsetWidth;
-      box.classList.add(kind==='good' ? 'pop' : 'shake');
-      box.innerHTML = html;
-    }
-
-    function clearAnswer(){
-      ['ans-h','ans-t','ans-o'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
-      const bh=document.getElementById('borrow-h'); if(bh) bh.value='';
-      const bt=document.getElementById('borrow-t'); if(bt) bt.value='';
-    }
-
-    function attachAnswerBehaviors(){
-      const ids=['ans-h','ans-t','ans-o'];
-      ids.forEach((id, idx)=>{
-        const el=document.getElementById(id);
-        if(!el) return;
-        el.addEventListener('input', ()=>{
-          const raw = normDigits(el.value).replace(/\D/g,'');
-          if (raw.length>=2){
-            const last3 = raw.slice(-3).padStart(3,'0');
-            document.getElementById('ans-h').value = last3[0];
-            document.getElementById('ans-t').value = last3[1];
-            document.getElementById('ans-o').value = last3[2];
-            document.getElementById('ans-o').focus();
-            return;
-          }
-          el.value = raw.slice(-1);
-          if (el.value && idx<ids.length-1) document.getElementById(ids[idx+1]).focus();
-        });
-        el.addEventListener('keydown', (e)=>{
-          if (e.key==='Backspace' && !el.value && idx>0) document.getElementById(ids[idx-1]).focus();
-          if (e.key==='Enter') checkAnswer();
-        });
-      });
-    }
-
-    function renderPractice(){
-      renderProblem('practiceProblem', state.q);
-      attachAnswerBehaviors();
-      const h=document.getElementById('ans-h'); if(h) h.focus();
-    }
-    renderPractice();
-
-    function readAnswer(){
-      const h=normDigits(document.getElementById('ans-h').value).replace(/\D/g,'').slice(-1);
-      const t=normDigits(document.getElementById('ans-t').value).replace(/\D/g,'').slice(-1);
-      const o=normDigits(document.getElementById('ans-o').value).replace(/\D/g,'').slice(-1);
-      if(h===''||t===''||o==='') return {ok:false, value:null};
-      return {ok:true, value: parseInt(`${h}${t}${o}`,10)};
-    }
-
-    function checkAnswer(){
-      const ans = readAnswer();
-      if(!ans.ok){
-        setFeedback('⚠️ اكتبي كل رقم في مربعه (مئات/عشرات/آحاد).', 'bad');
-        return;
-      }
-      state.total += 1;
-      const correct = ans.value === state.q.answer;
-      if(correct) state.score += 1;
-      updateScore();
-
-      if(correct){
-        setFeedback(`<div class="font-extrabold text-emerald-700 text-lg">أحسنتِ! إجابة صحيحة 🎉</div>
-          <div class="mt-2"><b>الناتج:</b> ${toArabic(state.q.answer)}</div>`, 'good');
-      } else {
-        setFeedback(`<div class="font-extrabold text-rose-700 text-lg">حاولي مرة أخرى 💡</div>
-          <div class="mt-2"><b>إجابتك:</b> ${toArabic(ans.value)}</div>
-          <div><b>الإجابة الصحيحة:</b> ${toArabic(state.q.answer)}</div>
-          <div class="mt-3 p-4 rounded-2xl bg-amber-50 border border-amber-200">${stepsHtml(state.q)}</div>`, 'bad');
-      }
-    }
-
-    function showSolution(){
-      setFeedback(`<div class="font-extrabold text-slate-800 mb-2">الحل خطوة بخطوة</div>${stepsHtml(state.q)}`, 'good');
-    }
-
-    function newQuestion(){
-      const mode = document.getElementById('mode').value;
-      state.q = gen(mode);
-      clearAnswer();
-      renderPractice();
-      setFeedback('اكتبي الناتج ثم اضغطي <b>تحقق</b>. تذكري: إذا كانت العشرات = ٠ قد نحتاج الاستلاف عبر الصفر.', 'good');
-    }
-
-    document.getElementById('btnCheck').onclick = checkAnswer;
-    document.getElementById('btnSolve').onclick = showSolution;
-    document.getElementById('btnNewQ').onclick = newQuestion;
-    document.getElementById('mode').onchange = newQuestion;
-
-    setTab('tab-learn');
-  </script>
-</body>
-</html>
